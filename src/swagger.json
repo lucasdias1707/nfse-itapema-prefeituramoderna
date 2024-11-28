@@ -1,0 +1,335 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API de Emissão de NFS-e",
+    "version": "1.0.0"
+  },
+  "components": {
+    "schemas": {}
+  },
+  "paths": {
+    "/emitir-nfse": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ambiente": {
+                    "type": "string",
+                    "enum": [
+                      "homologacao",
+                      "producao"
+                    ]
+                  },
+                  "securityKey": {
+                    "type": "string"
+                  },
+                  "dadosNfse": {
+                    "type": "object",
+                    "properties": {
+                      "DadosNota": {
+                        "type": "object",
+                        "properties": {
+                          "MunicipioPrestacao": {
+                            "type": "number"
+                          },
+                          "NaturezaOperacao": {
+                            "type": "number"
+                          },
+                          "IssRetido": {
+                            "type": "string",
+                            "enum": [
+                              "S",
+                              "N"
+                            ]
+                          },
+                          "Observacoes": {
+                            "type": "string"
+                          },
+                          "Atividade": {
+                            "type": "object",
+                            "properties": {
+                              "Codigo": {
+                                "type": "number"
+                              },
+                              "CodigoCnae": {
+                                "type": "string"
+                              },
+                              "CodigoLc116": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "Codigo",
+                              "CodigoCnae"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Prestador": {
+                            "type": "object",
+                            "properties": {
+                              "InscricaoMunicipal": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "InscricaoMunicipal"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Tomador": {
+                            "type": "object",
+                            "properties": {
+                              "TipoPessoa": {
+                                "type": "string",
+                                "enum": [
+                                  "F",
+                                  "J",
+                                  "E"
+                                ]
+                              },
+                              "NrDocumento": {
+                                "type": "string"
+                              },
+                              "RazaoSocial": {
+                                "type": "string"
+                              },
+                              "Endereco": {
+                                "type": "object",
+                                "properties": {
+                                  "Logradouro": {
+                                    "type": "string"
+                                  },
+                                  "Numero": {
+                                    "type": "string"
+                                  },
+                                  "Complemento": {
+                                    "type": "string"
+                                  },
+                                  "Bairro": {
+                                    "type": "string"
+                                  },
+                                  "Municipio": {
+                                    "type": "number"
+                                  },
+                                  "Cep": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "Logradouro",
+                                  "Municipio"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "Contato": {
+                                "type": "object",
+                                "properties": {
+                                  "Telefone": {
+                                    "type": "string"
+                                  },
+                                  "Email": {
+                                    "type": "string"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "InscricaoEstadual": {
+                                "type": "string"
+                              },
+                              "InscricaoMunicipal": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "TipoPessoa",
+                              "NrDocumento",
+                              "RazaoSocial",
+                              "Endereco"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Rps": {
+                            "type": "object",
+                            "properties": {
+                              "Numero": {
+                                "type": "number"
+                              },
+                              "Serie": {
+                                "type": "string"
+                              },
+                              "Tipo": {
+                                "type": "number"
+                              },
+                              "DataEmissao": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "Numero",
+                              "Serie",
+                              "Tipo",
+                              "DataEmissao"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "Servicos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Unidade": {
+                                  "type": "string"
+                                },
+                                "Quantidade": {
+                                  "type": "number"
+                                },
+                                "Descricao": {
+                                  "type": "string"
+                                },
+                                "ValorUnitario": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "Unidade",
+                                "Quantidade",
+                                "Descricao",
+                                "ValorUnitario"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "Valores": {
+                            "type": "object",
+                            "properties": {
+                              "ValorServicos": {
+                                "type": "number"
+                              },
+                              "ValorDeducoes": {
+                                "type": "number"
+                              },
+                              "ValorOutrasDeducoes": {
+                                "type": "number"
+                              },
+                              "ValorPis": {
+                                "type": "number"
+                              },
+                              "ValorCofins": {
+                                "type": "number"
+                              },
+                              "ValorInss": {
+                                "type": "number"
+                              },
+                              "ValorIr": {
+                                "type": "number"
+                              },
+                              "ValorCsll": {
+                                "type": "number"
+                              },
+                              "OutrasRetencoes": {
+                                "type": "number"
+                              },
+                              "DescontoIncondicionado": {
+                                "type": "number"
+                              },
+                              "DescontoCondicionado": {
+                                "type": "number"
+                              },
+                              "BaseCalculo": {
+                                "type": "number"
+                              },
+                              "Aliquota": {
+                                "type": "number"
+                              },
+                              "ValorIss": {
+                                "type": "number"
+                              },
+                              "ValorCredito": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "ValorServicos",
+                              "BaseCalculo",
+                              "Aliquota",
+                              "ValorIss"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "MunicipioPrestacao",
+                          "NaturezaOperacao",
+                          "IssRetido",
+                          "Atividade",
+                          "Prestador",
+                          "Tomador",
+                          "Rps",
+                          "Servicos",
+                          "Valores"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "DadosNota"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "ambiente",
+                  "securityKey",
+                  "dadosNfse"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
